@@ -1,0 +1,27 @@
+---------Sale finder-----------
+
+what i am thinking atm:
+program asks user for a webpage link and their email
+will send a email to user when the price of the item gets lower or sold out
+
+will scrape website for $ signs if nmber after it changes sned email
+scrape twice a day??
+how to store data??? (webpages to scrape) mongodb????
+
+some webpages like amazon have multiple $ what do?
+dont wanna use html elements since they can change
+
+need requests, bs4, html5lib.....
+
+host on aws?
+google chrome extension????
+
+ok need to use html elements to find price too hard to single out which $ is the real price
+this means need to hardcode per webpage lol
+can do this for webpages i visit a lot
+store in hash table?
+
+writes scraper.data to a text file
+read text file to see if sale
+if sale then send email, update price to new price
+if not do nothing
