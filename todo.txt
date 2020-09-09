@@ -1,27 +1,37 @@
 ---------Sale finder-----------
 
-what i am thinking atm:
-program asks user for a webpage link and their email
-will send a email to user when the price of the item gets lower or sold out
+# todo okay i should pass the entire list of urls to check for sale each time main.py runs
+ # it will still ask for a link - giveuser option if no link just check urls
+ # also add exception handles for None types everywhere
 
-will scrape website for $ signs if nmber after it changes sned email
-scrape twice a day??
-how to store data??? (webpages to scrape) mongodb????
+change the emails
 
-some webpages like amazon have multiple $ what do?
-dont wanna use html elements since they can change
 
-need requests, bs4, html5lib.....
+exception handling
 
-host on aws?
-google chrome extension????
 
-ok need to use html elements to find price too hard to single out which $ is the real price
-this means need to hardcode per webpage lol
-can do this for webpages i visit a lot
-store in hash table?
+add a remove.py where it clears the db
 
-writes scraper.data to a text file
-read text file to see if sale
-if sale then send email, update price to new price
-if not do nothing
+{'https://www.amazon.ca/KEXIN-Sticks-Flash-Drives-Memory/
+dp/B07RHLLR18?ref_=Oct_DLandingS_D_18f3dabc_61&smid=A21AQ
+316WNX0L1': {'price': '127.99', 'url': 'https://www.amazo
+n.ca/KEXIN-Sticks-Flash-Drives-Memory/dp/B07RHLLR18?ref_=
+Oct_DLandingS_D_18f3dabc_61&smid=A21AQ316WNX0L1', 'sale': False},
+ 'https://www.amazon.ca/dp/B009GSZ4ZI/ref=cm_gf_aAN_
+ i10_i3_d_p0_qd6_roXATohUeejJplZZvUIb': {'price': '57.08',
+  'url': 'https://www.amazon.ca/dp/B009GSZ4ZI/ref=cm_gf_aAN
+  _i10_i3_d_p0_qd6_roXATohUeejJplZZvUIb', 'sale': False},
+   'https://www.amazon.ca/gp/product/B0028YAO0C/ref=ppx_yo_
+   dt_b_asin_title_o00_s01?ie=UTF8&psc=1': {'price': '136.9
+   0', 'url': 'https://www.amazon.ca/gp/product/B0028YAO0C/r
+   ef=ppx_yo_dt_b_asin_title_o00_s01?ie=UTF8&psc=1', 'sale': False},
+    'https://www.amazon.ca/Vermont-Portable-Volleyball-Tel
+    escopic-Regulation/dp/B07D3C2BLQ/ref=bmx_3/130-9484450-9680
+    610?_encoding=UTF8&pd_rd_i=B07D3C2BLQ&pd_rd_r=9ce76963-a8a1
+    -4563-9e28-48307b15cc37&pd_rd_w=Pw5Rc&pd_rd_wg=2OVYM&pf
+    _rd_p=3fd07adc-5ab0-4c48-8746-94053772ff86&pf_rd_r=GME6
+    SFKBVYWVD35721M8&psc=1&refRID=GME6SFKBVYWVD357
+    21M8 ': {'price': None, 'url': 'https://www.amazon.ca/V
+    ermont-Portable-Volleyball-Telescopic-Regulation/dp/B07D
+    3C2BLQ/ref=bmx_3/130-9484450-9680610?_encoding=UTF8&pd_rd_i=B07D3C2BLQ&pd_rd_r=9ce76963-a8a1-4563-9e28-48307b15cc37&pd_rd_w=Pw5Rc&pd_rd_wg=2OVYM&pf_rd_p=3fd07adc-5ab0-4c48-8746-94053772ff86&pf_rd_r=GME6SFKBVYWVD35721M8&psc=1&refRID=GME6SFKBVYWVD35721M8 ', 'sale': False}}
+

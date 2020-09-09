@@ -4,20 +4,17 @@ import time
 import smtpd, ssl, smtplib, getpass
 
 # url = str(input("Enter the item you want price track. ")) #press space after input
-url = scraper.url
-# todo okay i should pass the entire list of urls to check for sale each time main.py runs
- # it will still ask for a link - giveuser option if no link just check urls
- # also add exception handles for None types everywhere
+# url = scraper.url
 
 
 def send_email():
     #  salefinder.NED@gmail.com
     port = 465
-    password = 'haruc4h9'  # todo getpass.getpass()
+    password = ''  # todo getpass.getpass()
     sender_email = "salefinder.ned@gmail.com"
     reciever_email = "ericdong97@gmail.com"
     smtp_server = 'smtp.gmail.com'
-    message = f"Hello, the following item is now on sale: {url}"
+    message = f"Hello, the following item is now on sale: {123}"
 
     context = ssl.create_default_context()
     with smtplib.SMTP_SSL(smtp_server, port, context=context) as server:
@@ -25,31 +22,38 @@ def send_email():
         server.sendmail(sender_email, reciever_email, message)
 
 
-def main():
-    data = scraper.get_item_info(url)
+entries_in_db = database.read_db()
+# print(entries_in_db)
+
+
+def main(url_to_check):
+    data = scraper.get_item_info(url_to_check)
     if database.is_empty():
         database.write_db(data)
 
-    dict_db = database.read_db()
     # reads the txtfile db and returns a dictionary key=url value=dictionary
-    if str(url) not in dict_db:  # if already in dont write
+    if str(url_to_check) not in entries_in_db:  # if already in dont write
+        print("Item added.")
         database.write_db(data)
     else:
+        print(f"Item already exists, checking {url_to_check}")
+        print(data)
+        print(data['price'])  # todo its this one
+        print(entries_in_db[str(url_to_check)]['price'])
+        if data['price'] < entries_in_db[str(url_to_check)]['price']:  # todo this needs to change
+            print("There is a sale!")
+            entries_in_db[str(url_to_check)]['sale'] = True
+            # database.delete_db(data["url"])
+
+        if entries_in_db[str(url_to_check)]['sale'] is True:
+            send_email()
+
+main(str(input("Enter the item you want price track. ")))
+for url_key in entries_in_db:
+    main(url_key)
 
 
-        try:
-            if data['price'] < dict_db[str(url)]['price']:
-                dict_db[str(url)]['sale'] = True
-                # todo delete data entry
-                database.delete_db(data["url"])
-
-            if dict_db[str(url)]['sale'] is True:
-                send_email()
-        except KeyError:
-            print('key does not exist2')
 
 # while True:
 #     print(main())
 #     time.sleep(60)
-
-main()

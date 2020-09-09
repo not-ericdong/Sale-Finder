@@ -3,11 +3,9 @@ I was going to use pymongo but I wanted this app to be easily accessable
 So I used a text file to store the values from
 """
 
-import scraper
 import json
 import os
 
-productData = scraper.data
 file_name = "product_data.txt"
 sale_dict = {}
 
@@ -21,15 +19,13 @@ def write_db(data):
     db.write(json.dumps(data) + '\n')
     db.close()
 
+
 # reads the txtfile db and returns a dictionary key=url value=dictionary
 def read_db():
     db = open(file_name, "r")
-    try:
-        for line in db:
-            data = json.loads(line)
-            sale_dict[data['url']] = data
-    except ValueError:
-        pass
+    for line in db:
+        data = json.loads(line)
+        sale_dict[data['url']] = data
     # print(sale_dict)
     db.close()
     return sale_dict

@@ -1,6 +1,10 @@
 {"price": "127.99", "url": "https://www.amazon.ca/KEXIN-Sticks-Flash-Drives-Memory/dp/B07RHLLR18?ref_=Oct_DLandingS_D_18f3dabc_61&smid=A21AQ316WNX0L1", "sale": false}
-{"price": "57.08", "url": "https://www.amazon.ca/dp/B009GSZ4ZI/ref=cm_gf_aAN_i10_i3_d_p0_qd6_roXATohUeejJplZZvUIb", "sale": false}
 {"price": "136.90", "url": "https://www.amazon.ca/gp/product/B0028YAO0C/ref=ppx_yo_dt_b_asin_title_o00_s01?ie=UTF8&psc=1", "sale": false}
-{"price": null, "url": "https://www.amazon.ca/Vermont-Portable-Volleyball-Telescopic-Regulation/dp/B07D3C2BLQ/ref=bmx_3/130-9484450-9680610?_encoding=UTF8&pd_rd_i=B07D3C2BLQ&pd_rd_r=9ce76963-a8a1-4563-9e28-48307b15cc37&pd_rd_w=Pw5Rc&pd_rd_wg=2OVYM&pf_rd_p=3fd07adc-5ab0-4c48-8746-94053772ff86&pf_rd_r=GME6SFKBVYWVD35721M8&psc=1&refRID=GME6SFKBVYWVD35721M8 ", "sale": false}
 {"price": "57.08", "url": "https://www.amazon.ca/dp/B009GSZ4ZI/ref=cm_gf_aAN_i10_i3_d_p0_qd6_roXATohUeejJplZZvUIb", "sale": false}
-{"price": "57.08", "url": "https://www.amazon.ca/dp/B009GSZ4ZI/ref=cm_gf_aAN_i10_i3_d_p0_qd6_roXATohUeejJplZZvUIb", "sale": false}
+{"price": "30.00", "url": "https://www.amazon.ca/dp/B00CD0KZ78/ref=cm_gf_aAN_i10_i3_i6_d_p0_qd0_WmamKvWAGrnNodHuZehZ", "sale": false}
+{"price": "62.97", "url": "https://www.amazon.ca/dp/B01J5A4MU4/ref=cm_gf_aAN_i0_i1_i3_d_p0_qd0_QjbIyu8ddPyd3CxvMH38", "sale": false}
+{"price": "176.91", "url": "https://www.amazon.ca/dp/B01LY32G54/ref=cm_gf_aAN_i18_i3_d_p0_qd2_8gbDfHoimIYuC2XCdnRw ", "sale": false}
+{"price": "48.59", "url": "https://www.amazon.ca/dp/B072K4LV5V/ref=cm_gf_aAN_i0_i3_d_p0_qd4_wMl2SxU7XFOb1xrw1RVa", "sale": false}
+{"price": "10.81", "url": "https://www.amazon.ca/dp/B00UNQHA3Q/ref=cm_gf_aAN_i0_i3_d_p0_qd6_7KX9COk4zhir3AX0x1E8", "sale": false}
+{"price": "18.95", "url": "https://www.amazon.ca/ANRRI-Blocking-Eyestrain-Lightweight-Eyeglasses/dp/B07P91Y7PM?ref_=Oct_DLandingS_D_28525e27_60&smid=AOWY3FNQ9JOK  ", "sale": false}
+{"price": "14.99", "url": "https://www.amazon.ca/FloridaBrands-Pro-Grade-Non-Stick-Heat-Resitant-Multicolor/dp/B074Q38T78?pf_rd_r=KRBT67KFCTMQK26KE35K&pf_rd_p=346668b7-a7c7-4bc4-b726-0e0ca4b6cb2a&pd_rd_r=54e54e70-d5f3-4aab-a7f2-3d8d7f6fdc3c&pd_rd_w=3hrPJ&pd_rd_wg=SldmG&ref_=pd_gw_hl_comp_mis_psims ", "sale": false}
