@@ -15,14 +15,11 @@ def webpage_scrape(url):
 
     soup = bs(page.content, "html5lib")
 
+    # can add more data
     WEBSITE_DATA = {
                     "solestop": soup.find("div", {"class": "prices"}),
                     "amazon": soup.find("span", {"id": "price_inside_buybox"}),
-                    "havenshop": soup.find("div", {"class": "price"}),
                     "nike": soup.find("div", {"class": "price"})
-                    }
-    WEBSITE_DATA2 = {
-                    "havenshop": soup.find("span", {"class": "highlight"}),
                     }
 
     domain = re.findall(r".*\.(.*)\..*", url)
@@ -43,23 +40,9 @@ def get_price(price_str):
         price_txt = re.findall(r"\d+.\d+", price_str)
         return price_txt[0]
     except IndexError:
-        raise IndexError
+        pass
     except TypeError:
         print("No price found.")
-
-
-# def find_website(url):
-#     domain = re.findall(r".*\.(.*)\..*", url)
-#     try:
-#         domain_elem = WEBSITE_DATA[domain[0]]
-#         return domain_elem.get_text()
-#     except IndexError:
-#         pass
-#     except KeyError:
-#         print("This program does not work with this website yet.")
-#         sys.exit(1)
-#     except AttributeError:
-#         print("Something about this website changed.")
 
 
 def get_item_info(url):

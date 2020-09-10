@@ -1,59 +1,77 @@
 import scraper
 import database
 import time
-import smtpd, ssl, smtplib, getpass
+import smtpd, ssl, smtplib
+from email.mime.text import MIMEText
 
-# url = str(input("Enter the item you want price track. ")) #press space after input
-# url = scraper.url
+url_input = str(input("Enter the URL of the item you want to price track, if you want to check prices just hit enter. "))  # press space after input - pycharm
+
+# reads the txtfile db and returns a dictionary key=url value=dictionary
+entries_in_db = database.read_db()
 
 
-def send_email():
-    #  salefinder.NED@gmail.com
+def send_email(new_data, old_data):
+    sale_perc = round((float(old_data)-float(new_data))/float(old_data), 2)*100
     port = 465
-    password = ''  # todo getpass.getpass()
+
+    # Change this to your email to recieve emails
+    reciever_email = "ericdong97@gmail.com"  # todo change this
+
+    message = MIMEText(f"\n Hello, the following item is now on sale: {url_input}"
+                       f"\n The old price was {old_data}."
+                       f"\n The price is now {new_data}."
+                       f"\n The item is {sale_perc}% off!"
+                       f"\n \n This item is still being tracked."
+                       )
+    password = 'haruc4h9'
     sender_email = "salefinder.ned@gmail.com"
-    reciever_email = "ericdong97@gmail.com"
     smtp_server = 'smtp.gmail.com'
-    message = f"Hello, the following item is now on sale: {123}"
+    message['Subject'] = "Sale Finder"
 
     context = ssl.create_default_context()
-    with smtplib.SMTP_SSL(smtp_server, port, context=context) as server:
-        server.login(sender_email, password)
-        server.sendmail(sender_email, reciever_email, message)
-
-
-entries_in_db = database.read_db()
-# print(entries_in_db)
+    server = smtplib.SMTP_SSL(smtp_server, port, context=context)
+    server.login(sender_email, password)
+    server.sendmail(sender_email, reciever_email, message.as_string())
+    server.quit
+    print("Email sent!")
 
 
 def main(url_to_check):
     data = scraper.get_item_info(url_to_check)
-    if database.is_empty():
+    new_price = data['price']
+    old_price = entries_in_db[str(url_to_check)]['price']
+    if database.is_empty():  # writing first entry
         database.write_db(data)
 
-    # reads the txtfile db and returns a dictionary key=url value=dictionary
-    if str(url_to_check) not in entries_in_db:  # if already in dont write
+    if str(url_to_check) not in entries_in_db:  # if already in don't write
         print("Item added.")
         database.write_db(data)
-    else:
+    else:  # if item is already in db then check the price
         print(f"Item already exists, checking {url_to_check}")
-        print(data)
-        print(data['price'])  # todo its this one
-        print(entries_in_db[str(url_to_check)]['price'])
-        if data['price'] < entries_in_db[str(url_to_check)]['price']:  # todo this needs to change
-            print("There is a sale!")
-            entries_in_db[str(url_to_check)]['sale'] = True
-            # database.delete_db(data["url"])
+        # print("Price now: " + str(new_price))
+        # print("Price before: " + str(old_price))
+        try:
+            if new_price < old_price:  # if new price < old
+                print("There is a sale!")
+                entries_in_db[str(url_to_check)]['sale'] = True
+                database.delete_db(data["url"])  # delete line with same url
+                database.write_db(data)         # add line back with new price
+            elif new_price > old_price:  # if new price > old
+                database.delete_db(data["url"])
+                database.write_db(data)
+        except TypeError:
+            pass
 
         if entries_in_db[str(url_to_check)]['sale'] is True:
-            send_email()
+            print("Sending email...")
+            send_email(new_price, old_price)
 
-main(str(input("Enter the item you want price track. ")))
+
+if url_input is not "":  # todo handle none url inputs
+    main(url_input)
 for url_key in entries_in_db:
     main(url_key)
 
-
-
 # while True:
 #     print(main())
-#     time.sleep(60)
+#     time.sleep(600)

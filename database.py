@@ -1,6 +1,7 @@
 """
 I was going to use pymongo but I wanted this app to be easily accessable
-So I used a text file to store the values from
+So I used a text file to store the values from the user so they don't have to install
+mongoDB to use this program
 """
 
 import json
@@ -14,13 +15,15 @@ def is_empty():
     return os.stat(file_name).st_size == 0
 
 
+# write to database using json.dump so I can use
+# json.loads to get the text back as a dictionary later
 def write_db(data):
     db = open(file_name, "a")
     db.write(json.dumps(data) + '\n')
     db.close()
 
 
-# reads the txtfile db and returns a dictionary key=url value=dictionary
+# reads the text file db and returns a dictionary key=url value=dictionary
 def read_db():
     db = open(file_name, "r")
     for line in db:
@@ -31,7 +34,7 @@ def read_db():
     return sale_dict
 
 
-# deletes any line that contains 'item'
+# deletes any line that contains 'item' - I pass the url as item
 def delete_db(item):
     lines = []
     with open(file_name, "r") as db:
