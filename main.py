@@ -15,7 +15,9 @@ def send_email(new_data, old_data):
     port = 465
 
     # Change this to your email to recieve emails
-    reciever_email = "ericdong97@gmail.com"  # todo change this
+    r_email = open("reciever_email.txt", "r")
+    reciever_email = r_email.readline()
+    r_email.close()
 
     message = MIMEText(f"\n Hello, the following item is now on sale: {url_input}"
                        f"\n The old price was {old_data}."
@@ -38,33 +40,36 @@ def send_email(new_data, old_data):
 
 def main(url_to_check):
     data = scraper.get_item_info(url_to_check)
-    new_price = data['price']
-    old_price = entries_in_db[str(url_to_check)]['price']
+
     if database.is_empty():  # writing first entry
         database.write_db(data)
-
-    if str(url_to_check) not in entries_in_db:  # if already in don't write
         print("Item added.")
-        database.write_db(data)
-    else:  # if item is already in db then check the price
-        print(f"Item already exists, checking {url_to_check}")
-        # print("Price now: " + str(new_price))
-        # print("Price before: " + str(old_price))
-        try:
-            if new_price < old_price:  # if new price < old
-                print("There is a sale!")
-                entries_in_db[str(url_to_check)]['sale'] = True
-                database.delete_db(data["url"])  # delete line with same url
-                database.write_db(data)         # add line back with new price
-            elif new_price > old_price:  # if new price > old
-                database.delete_db(data["url"])
-                database.write_db(data)
-        except TypeError:
-            pass
+    else:
+        if str(url_to_check) not in entries_in_db:  # if already in don't write
+            database.write_db(data)
+            print("Item added.")
 
-        if entries_in_db[str(url_to_check)]['sale'] is True:
-            print("Sending email...")
-            send_email(new_price, old_price)
+        else:  # if item is already in db then check the price
+            new_price = data['price']
+            old_price = entries_in_db[str(url_to_check)]['price']
+            print(f"Item already exists, checking {url_to_check}")
+            # print("Price now: " + str(new_price))
+            # print("Price before: " + str(old_price))
+            try:
+                if new_price < old_price:  # if new price < old
+                    print("There is a sale!")
+                    entries_in_db[str(url_to_check)]['sale'] = True
+                    database.delete_db(data["url"])  # delete line with same url
+                    database.write_db(data)         # add line back with new price
+                elif new_price > old_price:  # if new price > old
+                    database.delete_db(data["url"])
+                    database.write_db(data)
+            except TypeError:
+                pass
+
+            if entries_in_db[str(url_to_check)]['sale'] is True:
+                print("Sending email...")
+                send_email(new_price, old_price)
 
 
 if url_input is not "":  # todo handle none url inputs

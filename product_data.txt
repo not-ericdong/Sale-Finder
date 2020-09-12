@@ -1,0 +1,3 @@
+{"price": null, "url": "https://www.amazon.ca/gp/product/B07255T6SW?pf_rd_r=QRF1D5ZABYDDVXHKPD1R&pf_rd_p=05326fd5-c43e-4948-99b1-a65b129fdd73 ", "sale": false}
+{"price": null, "url": "https://www.amazon.ca/Scraper-Cutter-Stainless-Pastry-Scraper/dp/B08DTRR9YN/ref=pd_sbs_79_5/130-9484450-9680610?_encoding=UTF8&pd_rd_i=B08DTRR9YN&pd_rd_r=33290d49-6d96-43c8-9bf7-8e69bbcea0ea&pd_rd_w=2rlQI&pd_rd_wg=F5tFv&pf_rd_p=e2c8fd77-bcab-46e7-9a0c-48650e9db03b&pf_rd_r=1F3QSR81EACS2WG2JE9B&psc=1&refRID=1F3QSR81EACS2WG2JE9B ", "sale": false}
+{"price": "120", "url": "https://www.nike.com/ca/t/air-force-1-07-shoe-KyTDGepj/315122-111 ", "sale": false}
