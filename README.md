@@ -3,7 +3,7 @@
 ### A tool to help you save money!
 
 This program checks the price of an item you are looking for all you have to do is provide an URL for the item you would like to track.
-It does this by scraping the web for the price of the item and emailing you once 
+It does this by scraping the web for the price of the item and emailing you once the price of the item drops.
 
 ## This program currently works with NIKE website, SOLESTOP.com, 
 
